@@ -11,7 +11,7 @@
 
 #pragma once
 
-#ifdef CommandInterface_h
+#if __has_include("CommandInterface.h")
 
 class DebugLogger;
 

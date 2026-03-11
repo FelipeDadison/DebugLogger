@@ -8,7 +8,7 @@
  * Registers runtime logger management commands with the CLI system.
  */
 
-#ifdef CommandInterface_h
+#if __has_include("CommandInterface.h")
 
 #include "LoggerCLI.h"
 #include "DebugLogger.h"
