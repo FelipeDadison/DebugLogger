@@ -1,0 +1,31 @@
+{
+  "name": "DebugLogger",
+  "version": "1.0.0",
+  "description": "Advanced logging system for ESP32 with multi-level filtering, file logging, tag support, and optional CommandInterface integration",
+  "keywords": [
+    "logger",
+    "logging",
+    "debug",
+    "console",
+    "file",
+    "esp32",
+    "debugging",
+    "diagnostics"
+  ],
+  "authors": [
+    {
+      "name": "Felipe Dadison"
+    }
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/FelipeDadison/DebugLogger",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FelipeDadison/DebugLogger.git"
+  },
+  "frameworks": ["arduino"],
+  "platforms": ["espressif32"],
+  "build": {
+    "srcDir": "src"
+  }
+}
