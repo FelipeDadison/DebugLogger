@@ -24,7 +24,7 @@
  * @brief Logging severity levels
  */
 enum class LogLevel : uint8_t {
-    NONE
+    NONE,
     ERROR,
     WARN,
     INFO,
