@@ -1,6 +1,6 @@
 {
   "name": "DebugLogger",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Advanced logging system for ESP32 with multi-level filtering, file logging, tag support, and optional CommandInterface integration",
   "keywords": [
     "logger",

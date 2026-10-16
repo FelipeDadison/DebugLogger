@@ -1,5 +1,5 @@
 /**
- * @example file_logging.cpp
+ * @example file_logging.ino
  * @brief DebugLogger with file logging to filesystem
  * 
  * Features:
@@ -27,10 +27,10 @@ void setup() {
     Logger.addOutput(&Serial);
     
     // Console: log everything (DEBUG level)
-    Logger.setLevel(LogLevel::DEBUG);
+    Logger.setLevel(LogLevel::Debug);
     
     // File: only log warnings and errors (WARN level)
-    Logger.beginFileLogging(SPIFFS, LogLevel::WARN, "/logs.txt", 50);
+    Logger.beginFileLogging(SPIFFS, LogLevel::Warn, "/logs.txt", 50);
     
     Serial.println("\n[File Logging Example]\n");
     Serial.println("Console level: DEBUG (all messages)");

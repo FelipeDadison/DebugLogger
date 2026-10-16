@@ -1,5 +1,5 @@
 /**
- * @example with_cli.cpp
+ * @example with_cli.ino
  * @brief DebugLogger with CommandInterface integration (optional)
  * 
  * Features:
@@ -11,25 +11,29 @@
  */
 
 #include <Arduino.h>
+#include <SPIFFS.h>
 #include "DebugLogger.h"
-#include "CommandInterface.h"
+#include "DebugLoggerCLI.h"
 
 void setup() {
     Serial.begin(115200);
     delay(1000);
+    
+    // Initialize filesystem
+    SPIFFS.begin(true);
     
     // Setup CommandInterface
     Cli.addInputStream(Serial);
     Cli.addOutputStream(Serial);
     Cli.setProjectInfo("Logger CLI Example", "1.0.0", "ESP32");
     
-    // Register logger commands (automatic if CommandInterface included)
+    // Register logger commands (DebugLoggerCLI.h)
     registerLoggerCLI(Logger);
     
     // Setup logger
     Logger.addOutput(&Serial);
-    Logger.setLevel(LogLevel::INFO);
-    Logger.beginFileLogging(SPIFFS, LogLevel::WARN, "/logs.txt", 50);
+    Logger.setLevel(LogLevel::Info);
+    Logger.beginFileLogging(SPIFFS, LogLevel::Warn, "/logs.txt", 50);
     
     // Enable some tags
     Logger.enableTag("Main");
@@ -39,6 +43,7 @@ void setup() {
     Serial.println("Available CLI commands:");
     Serial.println("  LOGGER_SET_LEVEL\\<0-4> - Set console log level");
     Serial.println("  LOGGER_GET_LEVEL - Show current log level");
+    Serial.println("  LOGGER_SET_FILE_LEVEL\\<0-4> - Set file log level");
     Serial.println("  LOGGER_GET_FILE - Read log file");
     Serial.println("  LOGGER_CLEAR_FILE - Clear log file");
     Serial.println("  LOGGER_ENABLE_TAG\\<tag> - Enable logging for tag");
@@ -59,7 +64,7 @@ void loop() {
         
         Logger.infoTagged("Main", "Main loop running");
         Logger.infoTagged("Test", "Test message");
-        Logger.warnTagged("System", "Memory: %d bytes", ESP.getFreeHeap());
+        Logger.warnTagged("System", "Memory: %lu bytes", (unsigned long)ESP.getFreeHeap());
     }
     
     // Flush file logs

@@ -1,5 +1,5 @@
 /**
- * @example tagged_logging.cpp
+ * @example tagged_logging.ino
  * @brief DebugLogger with tag-based filtering
  * 
  * Features:
@@ -16,9 +16,10 @@ void setup() {
     delay(1000);
     
     Logger.addOutput(&Serial);
-    Logger.setLevel(LogLevel::DEBUG);
+    Logger.setLevel(LogLevel::Debug);
     
-    // Only enable specific tags - messages without tags or disabled tags won't appear
+    // Only enabled tags are shown (with no tags enabled, all tags are shown)
+    // Untagged messages are always shown
     Logger.enableTag("WiFi");
     Logger.enableTag("Sensor");
     Logger.enableTag("System");
@@ -43,8 +44,8 @@ void loop() {
         // This tag is not enabled - will not appear
         Logger.infoTagged("Database", "Query executed in 125ms");
         
-        // No tag - will not appear when tags are enabled
-        Logger.infoTagged(nullptr, "Untagged message (filtered out)");
+        // No tag - always appears
+        Logger.info("Untagged message (always shown)");
         
         Serial.println();
     }

@@ -1,5 +1,5 @@
 /**
- * @example basic_logging.cpp
+ * @example basic_logging.ino
  * @brief Basic DebugLogger example with console output
  * 
  * Features:
@@ -19,7 +19,10 @@ void setup() {
     Logger.addOutput(&Serial);
     
     // Set logging level (DEBUG shows all messages)
-    Logger.setLevel(LogLevel::DEBUG);
+    Logger.setLevel(LogLevel::Debug);
+    
+    // Use plain text on terminals without ANSI colors (e.g. Arduino IDE Serial Monitor)
+    // Logger.setColors(false);
     
     Serial.println("\n[Basic Logging Example]\n");
 }
